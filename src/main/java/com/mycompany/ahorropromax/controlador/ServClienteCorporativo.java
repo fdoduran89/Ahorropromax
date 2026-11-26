@@ -13,9 +13,6 @@ import java.util.List;
 
 public class ServClienteCorporativo extends HttpServlet {
 
-    // ¡OJO! Ya no creamos el servicio a nivel de clase.
-    // Se crea dentro de cada método para evitar fallos al arrancar Tomcat.
-
     private ServicioClienteCorporativo getServicio() {
         return new ServicioClienteCorporativo();
     }
@@ -31,7 +28,7 @@ public class ServClienteCorporativo extends HttpServlet {
 
         switch (path) {
             case "/registrar":
-                request.getRequestDispatcher("/empresa/registroEmpresa.jsp").forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/views/empresa/registroEmpresa.jsp").forward(request, response);
                 break;
             case "/listar":
                 listarEmpresas(request, response);
@@ -48,7 +45,9 @@ public class ServClienteCorporativo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String path = request.getPathInfo();
+        
         if ("/registrar".equals(path)) {
             registrarEmpresa(request, response);
         } else {
@@ -79,10 +78,11 @@ public class ServClienteCorporativo extends HttpServlet {
 
         } catch (IllegalArgumentException e) {
             request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/empresa/registroEmpresa.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empresa/registroEmpresa.jsp").forward(request, response);
         } catch (Exception e) {
+            e.printStackTrace();
             request.setAttribute("error", "Error interno: " + e.getMessage());
-            request.getRequestDispatcher("/empresa/registroEmpresa.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empresa/registroEmpresa.jsp").forward(request, response);
         }
     }
 
@@ -91,7 +91,7 @@ public class ServClienteCorporativo extends HttpServlet {
         try {
             List<ClienteCorporativo> empresas = getServicio().listar();
             request.setAttribute("empresas", empresas);
-            request.getRequestDispatcher("/empresa/listaEmpresas.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empresa/listaEmpresas.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Error listando empresas: " + e.getMessage());
@@ -114,7 +114,7 @@ public class ServClienteCorporativo extends HttpServlet {
                 return;
             }
             request.setAttribute("empresa", empresa);
-            request.getRequestDispatcher("/empresa/detalleEmpresa.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empresa/detalleEmpresa.jsp").forward(request, response);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID inválido");
         }

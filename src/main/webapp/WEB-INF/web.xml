@@ -7,19 +7,7 @@
 
     <display-name>AhorroPromax - Banco BBC</display-name>
 
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>
-
-    <servlet>
-        <servlet-name>ServletPrueba</servlet-name>
-        <servlet-class>com.mycompany.ahorropromax.controlador.ServPruebaConexion</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>ServletPrueba</servlet-name>
-        <url-pattern>/prueba-conexion</url-pattern>
-    </servlet-mapping>
-
+    <!-- Servlet de Empresas -->
     <servlet>
         <servlet-name>ServletCliente</servlet-name>
         <servlet-class>com.mycompany.ahorropromax.controlador.ServClienteCorporativo</servlet-class>
@@ -29,6 +17,7 @@
         <url-pattern>/empresa/*</url-pattern>
     </servlet-mapping>
 
+    <!-- Servlet de Empleados -->
     <servlet>
         <servlet-name>ServletEmpleado</servlet-name>
         <servlet-class>com.mycompany.ahorropromax.controlador.ServEmpleadoCorporativo</servlet-class>
@@ -37,5 +26,29 @@
         <servlet-name>ServletEmpleado</servlet-name>
         <url-pattern>/empleado/*</url-pattern>
     </servlet-mapping>
+
+    <!-- Servlet de Créditos -->
+    <servlet>
+        <servlet-name>ServletCredito</servlet-name>
+        <servlet-class>com.mycompany.ahorropromax.controlador.ServCredito</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletCredito</servlet-name>
+        <url-pattern>/credito/*</url-pattern>
+    </servlet-mapping>
+
+    <!-- Servlet de Prueba -->
+    <servlet>
+        <servlet-name>ServletPrueba</servlet-name>
+        <servlet-class>com.mycompany.ahorropromax.controlador.ServPruebaConexion</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ServletPrueba</servlet-name>
+        <url-pattern>/prueba-conexion</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 
 </web-app>

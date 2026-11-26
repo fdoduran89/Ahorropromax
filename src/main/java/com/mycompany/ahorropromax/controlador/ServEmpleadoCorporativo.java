@@ -12,6 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ServEmpleadoCorporativo extends HttpServlet {
@@ -49,7 +50,9 @@ public class ServEmpleadoCorporativo extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        request.setCharacterEncoding("UTF-8");
         String path = request.getPathInfo();
+        
         if ("/registrar".equals(path)) {
             registrarEmpleado(request, response);
         } else {
@@ -62,7 +65,7 @@ public class ServEmpleadoCorporativo extends HttpServlet {
         try {
             List<ClienteCorporativo> empresas = getServicioEmpresa().listar();
             request.setAttribute("empresas", empresas);
-            request.getRequestDispatcher("/empleado/registroEmpleado.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empleado/registroEmpleado.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "Error cargando empresas: " + e.getMessage());
@@ -101,7 +104,7 @@ public class ServEmpleadoCorporativo extends HttpServlet {
             request.setAttribute("error", "Error al registrar: " + e.getMessage());
             List<ClienteCorporativo> empresas = getServicioEmpresa().listar();
             request.setAttribute("empresas", empresas);
-            request.getRequestDispatcher("/empleado/registroEmpleado.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empleado/registroEmpleado.jsp").forward(request, response);
         }
     }
 
@@ -109,14 +112,14 @@ public class ServEmpleadoCorporativo extends HttpServlet {
             throws ServletException, IOException {
         try {
             List<ClienteCorporativo> empresas = getServicioEmpresa().listar();
-            java.util.List<EmpleadoCorporativo> todosLosEmpleados = new java.util.ArrayList<>();
+            List<EmpleadoCorporativo> todosLosEmpleados = new ArrayList<>();
             
             for (ClienteCorporativo c : empresas) {
                 todosLosEmpleados.addAll(getServicioEmp().listarPorEmpresa(c.getId()));
             }
 
             request.setAttribute("empleados", todosLosEmpleados);
-            request.getRequestDispatcher("/empleado/listaEmpleados.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/empleado/listaEmpleados.jsp").forward(request, response);
 
         } catch (Exception e) {
             e.printStackTrace();

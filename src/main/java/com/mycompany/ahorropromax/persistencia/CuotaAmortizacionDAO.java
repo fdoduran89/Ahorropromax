@@ -55,7 +55,6 @@ public class CuotaAmortizacionDAO {
             }
 
             cn.commit();
-            System.out.println("  ✓ " + tabla.size() + " cuotas insertadas para crédito " + idCredito);
 
         } catch (SQLException e) {
             if (cn != null) {

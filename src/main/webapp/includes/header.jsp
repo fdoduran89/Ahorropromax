@@ -38,5 +38,6 @@
             <a href="${pageContext.request.contextPath}/empresa/listar">Empresas</a>
             <a href="${pageContext.request.contextPath}/empleado/listar">Empleados</a>
             <a href="${pageContext.request.contextPath}/credito/registrar">Créditos</a>
+            <a href="${pageContext.request.contextPath}/empleado/carga-masiva">Carga Masiva</a>
         </nav>
     </header>

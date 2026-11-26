@@ -2,7 +2,6 @@ package com.mycompany.ahorropromax.controlador;
 
 import com.mycompany.ahorropromax.persistencia.ConexionDB;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -13,7 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-@WebServlet("/prueba-conexion")
+//@WebServlet("/prueba-conexion")
 public class ServPruebaConexion extends HttpServlet {
 
     @Override
